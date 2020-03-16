@@ -41,6 +41,9 @@ from transformers import (
     XLMConfig,
     XLMForSequenceClassification,
     XLMTokenizer,
+    AlbertTokenizer,
+    AlbertForSequenceClassification,
+    AlbertConfig,
     get_linear_schedule_with_warmup,
 )
 from transformers import glue_convert_examples_to_features as convert_examples_to_features
@@ -58,13 +61,14 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 ALL_MODELS = sum(
-    (tuple(conf.pretrained_config_archive_map.keys()) for conf in (BertConfig, DistilBertConfig, XLMConfig)), ()
+    (tuple(conf.pretrained_config_archive_map.keys()) for conf in (BertConfig, DistilBertConfig, XLMConfig, AlbertConfig)), ()
 )
 
 MODEL_CLASSES = {
     "bert": (BertConfig, BertForSequenceClassification, BertTokenizer),
     "xlm": (XLMConfig, XLMForSequenceClassification, XLMTokenizer),
     "distilbert": (DistilBertConfig, DistilBertForSequenceClassification, DistilBertTokenizer),
+    "albert": (AlbertConfig, AlbertForSequenceClassification, AlbertTokenizer)
 }
 
 
