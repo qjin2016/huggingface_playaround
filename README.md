@@ -29,3 +29,6 @@ python run_xnli.py \
 ```shell
 python evaluate_xnli.py --model_type=bert --model_dir="/home/jqu/Documents/tmp/debug_xnli/"
 ```
+
+### Binary classification for sentiment analysis
+https://github.com/jalammar/jalammar.github.io/blob/master/notebooks/bert/A_Visual_Notebook_to_Using_BERT_for_the_First_Time.ipynb
