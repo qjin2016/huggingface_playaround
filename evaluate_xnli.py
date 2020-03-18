@@ -21,6 +21,9 @@ from transformers import (
 	XLMForSequenceClassification,
 	XLMTokenizer,
 	get_linear_schedule_with_warmup,
+	AlbertTokenizer,
+	AlbertForSequenceClassification,
+	AlbertConfig
 )
 
 
@@ -55,17 +58,25 @@ def main():
 	if args.model_type == "bert":
 		# prepare tokenizer
 		tokenizer = BertTokenizer.from_pretrained(
-	 	"/home/jqu/Documents/tmp/debug_xnli/",
+		args.model_dir,
 		do_lower_case=False)
 
 		model = BertForSequenceClassification.from_pretrained(args.model_dir)
 	
 	elif args.model_type == "distilbert":
 		tokenizer = DistilBertTokenizer.from_pretrained(
-		"/home/jqu/Documents/tmp/debug_xnli/",
+		args.model_dir,
 		do_lower_case=False)
 
 		model = DistilBertForSequenceClassification.from_pretrained(args.model_dir)
+
+	elif args.model_type == "albert":
+		tokenizer = AlbertTokenizer.from_pretrained(
+		args.model_dir,
+		do_lower_case=False)
+
+		model = AlbertForSequenceClassification.from_pretrained(args.model_dir)
+
 
 	model.to("cuda:0")
 	model.eval()
